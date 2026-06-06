@@ -1,0 +1,237 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --blood-red:    #c0392b;
+  --blood-dark:   #7f1d1d;
+  --charcoal:     #1c1c1c;
+  --gold:         #f4d03f;
+  --off-white:    #fafafa;
+  --card-bg:      #ffffff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--off-white);
+  color: var(--charcoal);
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: var(--blood-red); border-radius: 3px; }
+
+/* Pulse ring animation */
+@keyframes pulseRing {
+  0%   { transform: scale(0.7); opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+.pulse-ring {
+  animation: pulseRing 2s ease-out infinite;
+}
+.pulse-ring-2 {
+  animation: pulseRing 2s ease-out infinite 0.6s;
+}
+.pulse-ring-3 {
+  animation: pulseRing 2s ease-out infinite 1.2s;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #c0392b 0%, #e74c3c 50%, #f39c12 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Section padding */
+.section-pad { padding: 5rem 0; }
+
+/* Glass card */
+.glass-card {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(192,57,43,0.12);
+  border-radius: 1.25rem;
+}
+
+/* Blood drop cursor accent */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--blood-red);
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after { width: 100%; }
+
+/* India map dot glow */
+.map-dot {
+  filter: drop-shadow(0 0 6px rgba(192,57,43,0.8));
+}
+
+/* Language button */
+.lang-btn {
+  transition: all 0.2s ease;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(192,57,43,0.3);
+  cursor: pointer;
+  background: transparent;
+  color: var(--charcoal);
+}
+.lang-btn:hover, .lang-btn.active {
+  background: var(--blood-red);
+  color: white;
+  border-color: var(--blood-red);
+}
+
+/* Form inputs */
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 0.75rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background: white;
+  outline: none;
+}
+.form-input:focus {
+  border-color: var(--blood-red);
+  box-shadow: 0 0 0 3px rgba(192,57,43,0.1);
+}
+
+/* Button */
+.btn-primary {
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  color: white;
+  font-weight: 600;
+  padding: 0.85rem 2rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(192,57,43,0.35);
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--blood-red);
+  font-weight: 600;
+  padding: 0.85rem 2rem;
+  border-radius: 9999px;
+  border: 2px solid var(--blood-red);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+}
+.btn-secondary:hover {
+  background: var(--blood-red);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Leaflet map override */
+.leaflet-container {
+  border-radius: 1.25rem;
+  z-index: 1;
+}
+
+/* ========================================
+   UPGRADE v2 — Animation Utilities
+   ======================================== */
+
+/* Smooth reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Float animation for orb dots */
+@keyframes float {
+  0%, 100% { transform: translateY(0px);   }
+  50%       { transform: translateY(-12px); }
+}
+
+/* Page transition helper */
+.page-enter {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 350ms ease, transform 350ms ease;
+}
+
+/* Input focus glow — fallback for browsers without Framer */
+.form-input:focus {
+  border-color: var(--blood-red);
+  box-shadow: 0 0 0 4px rgba(192, 57, 43, 0.1);
+  outline: none;
+}
+
+/* Glass card hover — CSS fallback */
+.glass-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Magnetic button feel — desktop only */
+@media (hover: hover) {
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    transform: translateY(-2px);
+  }
+  .btn-primary:active,
+  .btn-secondary:active {
+    transform: translateY(0px) scale(0.98);
+  }
+}
+
+/* Mobile touch improvement */
+@media (max-width: 768px) {
+  .btn-primary,
+  .btn-secondary {
+    min-height: 48px;  /* Minimum touch target */
+  }
+
+  .form-input {
+    font-size: 16px;   /* Prevents iOS zoom on focus */
+    min-height: 48px;
+  }
+}
+
+/* Add these lines to existing index.css */
+@layer base {
+  * {
+    cursor: none !important;
+  }
+
+  @media (pointer: coarse) {
+    * {
+      cursor: auto !important;
+    }
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "nav": {
+    "home": "ਘਰ",
+    "donors": "ਦਾਨੀ",
+    "patients": "ਮਰੀਜ਼",
+    "how": "ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ",
+    "about": "ਸਾਡੇ ਬਾਰੇ",
+    "contact": "ਸੰਪਰਕ ਕਰੋ",
+    "register": "ਦਾਨੀ ਵਜੋਂ ਰਜਿਸਟਰ ਕਰੋ"
+  },
+  "hero": {
+    "tagline": "AI-ਸੰਚਾਲਿਤ ਖੂਨਦਾਨ ਨੈੱਟਵਰਕ",
+    "title": "ਹਰ ਸਕਿੰਟ ਮਾਇਨੇ ਰੱਖਦਾ ਹੈ।",
+    "subtitle": "BloodBridge AI ਥੈਲੇਸੀਮੀਆ ਮਰੀਜ਼ਾਂ ਨੂੰ ਪੂਰੇ ਭਾਰਤ ਵਿੱਚ ਅਨੁਕੂਲ ਖੂਨਦਾਤਾਵਾਂ ਨਾਲ ਜੋੜਦਾ ਹੈ।",
+    "cta_donor": "ਜੀਵਨ ਰੇਖਾ ਬਣੋ",
+    "cta_patient": "ਖੂਨ ਦੀ ਬੇਨਤੀ ਕਰੋ",
+    "stat1": "ਥੈਲੇਸੀਮੀਆ ਮਰੀਜ਼",
+    "stat2": "ਸਰਗਰਮ ਵਲੰਟੀਅਰ",
+    "stat3": "ਟ੍ਰਾਂਸਫਿਊਜ਼ਨ ਦੀ ਲੋੜ",
+    "stat3_sub": "ਹਰ 15-20 ਦਿਨਾਂ ਵਿੱਚ",
+    "stat4": "ਹਰ ਸਾਲ ਨਵੇਂ ਕੇਸ"
+  },
+  "finder": {
+    "title": "ਆਪਣਾ ਮੇਲ ਲੱਭੋ",
+    "check": "ਉਪਲਬਧਤਾ ਜਾਂਚੋ",
+    "city_placeholder": "ਜਿਵੇਂ ਹੈਦਰਾਬਾਦ, ਮੁੰਬਈ, ਚੇਨਈ",
+    "result_title": "ਦਾਨੀ ਉਪਲਬਧਤਾ ਸਕੋਰ",
+    "result_high": "ਉੱਚ ਉਪਲਬਧਤਾ",
+    "result_medium": "ਦਰਮਿਆਨੀ ਉਪਲਬਧਤਾ",
+    "result_low": "ਘੱਟ ਉਪਲਬਧਤਾ",
+    "result_desc": "ਤੁਹਾਡੇ ਖੇਤਰ ਵਿੱਚ ਦਾਨੀ ਤਿਆਰ ਹਨ। ਅਨੁਮਾਨਿਤ ਸਮਾਂ:",
+    "minutes": "ਮਿੰਟ",
+    "step1": "ਖੂਨ ਦੀ ਕਿਸਮ ਚੁਣੋ",
+    "step2": "ਆਪਣਾ ਸ਼ਹਿਰ ਦਰਜ ਕਰੋ",
+    "step3": "ਮੇਲ ਸਕੋਰ ਦੇਖੋ",
+    "subtitle": "ਦੇਖੋ ਅਸੀਂ ਕਿੰਨੀ ਜਲਦੀ ਦਾਨੀ ਲੱਭ ਸਕਦੇ ਹਾਂ"
+  },
+  "donor": {
+    "title": "ਜੀਵਨ ਰੇਖਾ ਬਣੋ",
+    "submit": "ਦਾਨੀ ਵਜੋਂ ਰਜਿਸਟਰ ਕਰੋ",
+    "success": "ਧੰਨਵਾਦ! ਤੁਸੀਂ ਹੁਣ BloodBridge ਨੈੱਟਵਰਕ ਦਾ ਹਿੱਸਾ ਹੋ।"
+  },
+  "footer": {
+    "tagline": "Connecting Donors. Saving Lives.",
+    "rights": "© 2025 BloodBridge AI — Blood Warriors Foundation.",
+    "thalassemia": "Making India Thalassemia-free by 2035",
+    "quick_links": "Quick Links",
+    "contact_us": "Contact"
+  },
+  "pulse": {
+    "title": "Blood Pulse — Live Network",
+    "subtitle": "Watch our AI-powered donor network pulse across India in real time",
+    "active": "Active Pulses",
+    "matched": "Matched Today",
+    "donors": "Online Donors"
+  },
+  "how": {
+    "title": "How the Pulse Works",
+    "subtitle": "Our AI acts the moment a patient needs blood.",
+    "step1_title": "Patient Raises Need",
+    "step1_desc": "Hospital submits request with blood type, location and urgency.",
+    "step2_title": "AI Scores Donors",
+    "step2_desc": "Engine ranks donors by compatibility, proximity and response rate.",
+    "step3_title": "Pulse Expands",
+    "step3_desc": "Top donors notified first. Expands if no response in 10 mins.",
+    "step4_title": "Match Confirmed",
+    "step4_desc": "Donor confirms with one tap. Coordinator tracks on dashboard."
+  },
+  "about": {
+    "title": "About Blood Warriors",
+    "subtitle": "A foundation built on hope, compassion, and technology.",
+    "body": "Blood Warriors Foundation is a registered NGO founded in 2020, headquartered in Hyderabad. Our mission is to create a Thalassemia-Free India by 2035.",
+    "vision": "A future where every child is born free of Thalassemia.",
+    "mission": "Empowering communities to support Thalassemia patients through AI, awareness, and action.",
+    "story": "Our Story",
+    "founded": "Established in 2020 in Hyderabad with a mission to make India Thalassemia-free by 2035.",
+    "what_title": "What is Thalassemia?",
+    "condition_title": "The Condition",
+    "condition_desc": "Thalassemia is an inherited blood disorder causing severe anaemia.",
+    "treatment_title": "The Treatment",
+    "treatment_desc": "Patients need blood transfusions every 15-20 days for their entire life.",
+    "prevention_title": "Prevention",
+    "prevention_desc": "Genetic testing before marriage can prevent Thalassemia.",
+    "learn": "Learn About Thalassemia →"
+  },
+  "impact": {
+    "title": "Our Impact",
+    "subtitle": "Real numbers. Real lives changed.",
+    "i1": "1M+",
+    "i1l": "Thalassemia Patients in India",
+    "i2": "579+",
+    "i2l": "Active Volunteers",
+    "i3": "58+",
+    "i3l": "Warriors Supported",
+    "i4": "10K+",
+    "i4l": "New Cases Every Year",
+    "i5": "2020",
+    "i5l": "Founded in Hyderabad",
+    "i6": "2035",
+    "i6l": "Target: Thalassemia-Free India"
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Whether you want to donate, partner, or just learn more — we're here.",
+    "phone": "+91 62814 77836",
+    "email": "contact@bloodwarriors.in",
+    "location": "Hyderabad, India",
+    "whatsapp": "Chat on WhatsApp",
+    "partner": "Partner With Us",
+    "form_name": "Your Name",
+    "form_email": "Your Email",
+    "form_message": "Your Message",
+    "form_submit": "Send Message"
+  }
+}

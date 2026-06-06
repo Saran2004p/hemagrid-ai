@@ -1,0 +1,115 @@
+{
+  "nav": {
+    "home": "ହୋମ",
+    "donors": "ଦାତାମାନେ",
+    "patients": "ରୋଗୀ",
+    "how": "କିପରି କାର୍ଯ୍ୟ କରେ",
+    "about": "ଆମ ବିଷୟରେ",
+    "contact": "ଯୋଗାଯୋଗ କରନ୍ତୁ",
+    "register": "ଦାତା ଭାବେ ପଞ୍ଜୀକୃତ ହୁଅନ୍ତୁ"
+  },
+  "hero": {
+    "tagline": "AI-ଚାଳିତ ରକ୍ତଦାନ ନେଟ୍‌ୱର୍କ",
+    "title": "ପ୍ରତ୍ୟେକ ମୁହୂର୍ତ ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ।",
+    "subtitle": "BloodBridge AI ଥ୍ୟାଲାସ୍ସେମିଆ ରୋଗୀଙ୍କୁ ଭାରତ ଜୁଡ଼ାରେ ସୁସଂଗତ ରକ୍ତଦାତାଙ୍କ ସହ ସଂଯୁକ୍ତ କରେ।",
+    "cta_donor": "ଜୀବନ ରେଖା ହୁଅନ୍ତୁ",
+    "cta_patient": "ରକ୍ତ ଅନୁରୋଧ କରନ୍ତୁ",
+    "stat1": "ଥ୍ୟାଲାସ୍ସେମିଆ ରୋଗୀ",
+    "stat2": "ସକ୍ରିୟ ସ୍ୱେଚ୍ଛାସେବୀ",
+    "stat3": "ଟ୍ରାନ୍ସଫ୍ୟୁଜନ ଆବଶ୍ୟକ",
+    "stat3_sub": "ପ୍ରତ୍ୟେକ 15-20 ଦିନ",
+    "stat4": "ପ୍ରତ ବର୍ଷ ନୂଆ କେସ"
+  },
+  "finder": {
+    "title": "ଆପଣଙ୍କ ମ୍ୟାଚ ଖୋଜନ୍ତୁ",
+    "check": "ଉପଲବ୍ଧତା ଯାଞ୍ଚ କରନ୍ତୁ",
+    "city_placeholder": "ଯଥା ହାଇଦ୍ରାବାଦ, ମୁମ୍ବାଇ, ଚେନ୍ନାଇ",
+    "result_title": "ଦାତା ଉପଲବ୍ଧତା ସ୍କୋର",
+    "result_high": "ଉଚ୍ଚ ଉପଲବ୍ଧତା",
+    "result_medium": "ମଧ୍ୟମ ଉପଲବ୍ଧତା",
+    "result_low": "କମ ଉପଲବ୍ଧତା",
+    "result_desc": "ଆପଣଙ୍କ ଅଞ୍ଚଳରେ ଦାତା ପ୍ରସ୍ତୁତ। ଅନୁମାନିତ ସମୟ:",
+    "minutes": "ମିନିଟ",
+    "step1": "ରକ୍ତ ଗ୍ରୁପ ବାଛନ୍ତୁ",
+    "step2": "ଆପଣଙ୍କ ସହର ଲେଖନ୍ତୁ",
+    "step3": "ମ୍ୟାଚ ସ୍କୋର ଦେଖନ୍ତୁ",
+    "subtitle": "ଆମେ କେତେ ଶୀଘ୍ର ଦାତା ଖୋଜିପାରିବୁ ଯାଞ୍ଚ କରନ୍ତୁ"
+  },
+  "donor": {
+    "title": "ଜୀବନ ରେଖା ହୁଅନ୍ତୁ",
+    "submit": "ଦାତା ଭାବେ ପଞ୍ଜୀକୃତ ହୁଅନ୍ତୁ",
+    "success": "ଧନ୍ୟବାଦ! ଆପଣ ଏବେ BloodBridge ନେଟ୍‌ୱର୍କର ଏକ ଅଂଶ।"
+  },
+  "footer": {
+    "tagline": "Connecting Donors. Saving Lives.",
+    "rights": "© 2025 BloodBridge AI — Blood Warriors Foundation.",
+    "thalassemia": "Making India Thalassemia-free by 2035",
+    "quick_links": "Quick Links",
+    "contact_us": "Contact"
+  },
+  "pulse": {
+    "title": "Blood Pulse — Live Network",
+    "subtitle": "Watch our AI-powered donor network pulse across India in real time",
+    "active": "Active Pulses",
+    "matched": "Matched Today",
+    "donors": "Online Donors"
+  },
+  "how": {
+    "title": "How the Pulse Works",
+    "subtitle": "Our AI acts the moment a patient needs blood.",
+    "step1_title": "Patient Raises Need",
+    "step1_desc": "Hospital submits request with blood type, location and urgency.",
+    "step2_title": "AI Scores Donors",
+    "step2_desc": "Engine ranks donors by compatibility, proximity and response rate.",
+    "step3_title": "Pulse Expands",
+    "step3_desc": "Top donors notified first. Expands if no response in 10 mins.",
+    "step4_title": "Match Confirmed",
+    "step4_desc": "Donor confirms with one tap. Coordinator tracks on dashboard."
+  },
+  "about": {
+    "title": "About Blood Warriors",
+    "subtitle": "A foundation built on hope, compassion, and technology.",
+    "body": "Blood Warriors Foundation is a registered NGO founded in 2020, headquartered in Hyderabad. Our mission is to create a Thalassemia-Free India by 2035.",
+    "vision": "A future where every child is born free of Thalassemia.",
+    "mission": "Empowering communities to support Thalassemia patients through AI, awareness, and action.",
+    "story": "Our Story",
+    "founded": "Established in 2020 in Hyderabad with a mission to make India Thalassemia-free by 2035.",
+    "what_title": "What is Thalassemia?",
+    "condition_title": "The Condition",
+    "condition_desc": "Thalassemia is an inherited blood disorder causing severe anaemia.",
+    "treatment_title": "The Treatment",
+    "treatment_desc": "Patients need blood transfusions every 15-20 days for their entire life.",
+    "prevention_title": "Prevention",
+    "prevention_desc": "Genetic testing before marriage can prevent Thalassemia.",
+    "learn": "Learn About Thalassemia →"
+  },
+  "impact": {
+    "title": "Our Impact",
+    "subtitle": "Real numbers. Real lives changed.",
+    "i1": "1M+",
+    "i1l": "Thalassemia Patients in India",
+    "i2": "579+",
+    "i2l": "Active Volunteers",
+    "i3": "58+",
+    "i3l": "Warriors Supported",
+    "i4": "10K+",
+    "i4l": "New Cases Every Year",
+    "i5": "2020",
+    "i5l": "Founded in Hyderabad",
+    "i6": "2035",
+    "i6l": "Target: Thalassemia-Free India"
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Whether you want to donate, partner, or just learn more — we're here.",
+    "phone": "+91 62814 77836",
+    "email": "contact@bloodwarriors.in",
+    "location": "Hyderabad, India",
+    "whatsapp": "Chat on WhatsApp",
+    "partner": "Partner With Us",
+    "form_name": "Your Name",
+    "form_email": "Your Email",
+    "form_message": "Your Message",
+    "form_submit": "Send Message"
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "nav": {
+    "home": "Home",
+    "donors": "Donors",
+    "patients": "Patients",
+    "how": "How It Works",
+    "about": "About",
+    "contact": "Contact",
+    "register": "Register as Donor"
+  },
+
+  "hero": {
+    "tagline": "AI-Powered Blood Donation Network",
+    "title": "Every Second Counts.",
+    "subtitle": "BloodBridge AI connects Thalassemia patients with compatible blood donors across India — intelligently, instantly, and with compassion.",
+    "cta_donor": "Become a Lifeline",
+    "cta_patient": "Request Blood",
+    "stat1": "Thalassemia Patients",
+    "stat2": "Active Volunteers",
+    "stat3": "Transfusions Needed",
+    "stat3_sub": "every 15–20 days per patient",
+    "stat4": "New Cases Yearly"
+  },
+
+  "pulse": {
+    "title": "The Blood Pulse — Live Network",
+    "subtitle": "Watch our AI-powered donor network pulse across India in real time",
+    "active": "Active Pulses",
+    "matched": "Matched Today",
+    "donors": "Online Donors"
+  },
+
+  "how": {
+    "title": "How the Pulse Works",
+    "subtitle": "Our AI doesn't wait. The moment a patient needs blood, a smart Pulse ripples through the donor network.",
+    "step1_title": "Patient Raises Need",
+    "step1_desc": "A hospital or patient submits a blood request with type, location, and urgency.",
+    "step2_title": "AI Scores Donors",
+    "step2_desc": "Our engine ranks donors by blood compatibility, proximity, eligibility, and past response rate.",
+    "step3_title": "Pulse Expands",
+    "step3_desc": "Top-matched donors are notified first. If no response in 10 mins, the pulse expands to the next tier.",
+    "step4_title": "Match Confirmed",
+    "step4_desc": "Donor confirms with one tap. Coordinator tracks on dashboard. System learns for next time.",
+    "ai_title": "How Our AI Scores Donors",
+    "ai_subtitle": "Multi-factor intelligence — not just blood type",
+    "ai_factor1": "Blood Compatibility",
+    "ai_factor2": "Proximity Score",
+    "ai_factor3": "Eligibility Check",
+    "ai_factor4": "Response History"
+  },
+
+  "finder": {
+    "title": "Find Your Match",
+    "subtitle": "Check how quickly we can find a compatible donor for you",
+    "step1": "Select Blood Type",
+    "step2": "Enter Your City",
+    "step3": "See Your Match Score",
+    "check": "Check Availability",
+    "city_placeholder": "e.g. Hyderabad, Mumbai, Chennai",
+    "result_title": "Donor Availability Score",
+    "result_high": "High Availability",
+    "result_medium": "Medium Availability",
+    "result_low": "Low Availability — Urgent Need",
+    "result_desc": "donors ready in your area. Estimated match time:",
+    "minutes": "minutes"
+  },
+
+  "donor": {
+    "title": "Become a Lifeline",
+    "subtitle": "Join 579+ volunteers making a difference. One donation every 3–4 months can save a Thalassemia patient's life.",
+    "name": "Full Name",
+    "phone": "Phone Number",
+    "email": "Email Address",
+    "blood": "Blood Type",
+    "city": "City",
+    "age": "Age",
+    "language": "Preferred Language",
+    "available": "I am available to donate",
+    "submit": "Register as Donor",
+    "success": "Thank you! You're now part of the BloodBridge network. We'll reach out when a patient near you needs your blood type."
+  },
+
+  "patient": {
+    "title": "Request Blood",
+    "subtitle": "Submit an urgent blood request. Our AI will immediately find the best-matched donors.",
+    "name": "Patient Name",
+    "hospital": "Hospital / Location",
+    "blood": "Blood Type Required",
+    "units": "Units Required",
+    "urgency": "Urgency Level",
+    "urgent": "Critical (within hours)",
+    "normal": "Planned (within days)",
+    "contact": "Contact Person Name",
+    "city": "City",
+    "submit": "Submit Blood Request",
+    "success": "Request submitted! Our AI is already scanning the donor network. You'll receive a confirmation within minutes."
+  },
+
+  "about": {
+    "title": "About Blood Warriors",
+    "subtitle": "A foundation built on hope, compassion, and technology.",
+    "body": "Blood Warriors Foundation is a registered NGO founded in 2020, headquartered in Hyderabad. Our mission is to create a #ThalassemiaFreeIndia by 2035 through donor matching, awareness, and prevention. With over 10,000 new Thalassemia patients born in India every year and 1 million already battling the disorder, the need for a smarter, faster blood network has never been greater.",
+    "vision": "A future where every child is born free of Thalassemia.",
+    "mission": "Empowering communities to support Thalassemia patients through AI, awareness, and action.",
+    "story": "Our Story",
+    "founded": "Established in 2020 in Hyderabad with a mission to make India Thalassemia-free by 2035.",
+    "what_title": "What is Thalassemia?",
+    "condition_title": "The Condition",
+    "condition_desc": "Thalassemia is an inherited blood disorder where the body produces abnormal hemoglobin, leading to destruction of red blood cells and severe anaemia.",
+    "treatment_title": "The Treatment",
+    "treatment_desc": "Patients require regular blood transfusions every 15–20 days — for their entire lifetime. There is no cure without a bone marrow transplant, only lifelong management.",
+    "prevention_title": "Prevention",
+    "prevention_desc": "Genetic testing before marriage can prevent Thalassemia. If both parents are carriers, there's a 25% chance each child will have the disease. Early screening saves lives.",
+    "learn": "Learn About Thalassemia →"
+  },
+
+  "impact": {
+    "title": "Our Impact",
+    "subtitle": "Real numbers. Real lives changed.",
+    "i1": "1M+",
+    "i1l": "Thalassemia Patients in India",
+    "i2": "579+",
+    "i2l": "Active Volunteers",
+    "i3": "58+",
+    "i3l": "Warriors Supported",
+    "i4": "10K+",
+    "i4l": "New Cases Every Year",
+    "i5": "2020",
+    "i5l": "Founded in Hyderabad",
+    "i6": "2035",
+    "i6l": "Target: Thalassemia-Free India"
+  },
+
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Whether you want to donate, partner, or just learn more — we're here.",
+    "phone": "+91 62814 77836",
+    "email": "contact@bloodwarriors.in",
+    "location": "Hyderabad, India",
+    "whatsapp": "Chat on WhatsApp",
+    "partner": "Partner With Us",
+    "form_name": "Your Name",
+    "form_email": "Your Email",
+    "form_message": "Your Message",
+    "form_submit": "Send Message"
+  },
+
+  "footer": {
+    "tagline": "Connecting Donors. Saving Lives.",
+    "rights": "© 2025 BloodBridge AI — Blood Warriors Foundation. All rights reserved.",
+    "thalassemia": "Making India Thalassemia-free by 2035",
+    "quick_links": "Quick Links",
+    "contact_us": "Contact"
+  }
+}
