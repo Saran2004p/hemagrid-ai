@@ -1,5 +1,5 @@
 // BloodBridge AI — API connector
-const BASE_URL = 'https://bloodbridge-backend-3d5m.onrender.com'
+const BASE_URL = 'http://hemagrid-backend-env.eba-zutpubgp.us-east-1.elasticbeanstalk.com'
 
 const api = async (endpoint, options = {}) => {
   try {
@@ -30,9 +30,7 @@ export async function
 getDashboard() {
 
   const res =
-    await fetch(
-      "http://localhost:5000/api/dashboard"
-    );
+    await fetch(`${BASE_URL}/api/dashboard`);
 
   return res.json();
 }
