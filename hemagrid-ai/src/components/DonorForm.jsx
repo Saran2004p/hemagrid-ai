@@ -88,37 +88,45 @@ export default function DonorForm() {
   const slowTimer = useRef(null);
 
   const onSubmit = async (data) => {
-    setLoading(true);
-    setApiError("");
+  setLoading(true);
+  setApiError("");
+  setSlowMsg("");
+
+  slowTimer.current = setTimeout(() => {
+    setSlowMsg(
+      "⏳ Server is waking up — this may take 30–60 seconds. Please wait..."
+    );
+  }, 10000);
+
+  try {
+    const result = await registerDonor({
+      ...data,
+      consent: true,
+    });
+
+    clearTimeout(slowTimer.current);
     setSlowMsg("");
 
-    slowTimer.current = setTimeout(() => {
-      setSlowMsg(
-        "⏳ Server is waking up — this may take 30–60 seconds. Please wait...",
-      );
-    }, 10000);
-
-    try {
-
-      clearTimeout(slowTimer.current);
-      setSlowMsg("");
-      if (result.success) {
-        reset();
-        setSuccessMsg(result.message);
-        setSubmitted(true);
-      } else {
-        setApiError(result.message || "Registration failed. Please try again.");
-      }
-    } catch {
-      clearTimeout(slowTimer.current);
-      setSlowMsg("");
-      setApiError(
-        "Could not connect to server. Please check your connection and try again.",
-      );
-    } finally {
-      setLoading(false);
+    if (result.success) {
+      reset();
+      setSuccessMsg(result.message || "Registration successful");
+      setSubmitted(true);
+    } else {
+      setApiError(result.message || "Registration failed");
     }
-  };
+  } catch (err) {
+    console.error(err);
+
+    clearTimeout(slowTimer.current);
+    setSlowMsg("");
+
+    setApiError(
+      "Could not connect to server. Please check your connection and try again."
+    );
+  } finally {
+    setLoading(false);
+  }
+};
 
   const handleOTPVerify = async (otp) => {
     if (otp !== "123456") {
