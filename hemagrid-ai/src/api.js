@@ -1,5 +1,6 @@
 // BloodBridge AI — API connector
-const BASE_URL = 'https://hemagrid-backend-env.eba-zutpubgp.us-east-1.elasticbeanstalk.com'
+const BASE_URL =
+'http://hemagrid-backend-env.eba-zutpubgp.us-east-1.elasticbeanstalk.com';
 
 const api = async (endpoint, options = {}) => {
   try {
