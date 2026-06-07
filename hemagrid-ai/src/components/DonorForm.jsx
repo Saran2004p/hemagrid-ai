@@ -100,16 +100,6 @@ export default function DonorForm() {
 
     try {
 
-      setPendingFormData({
-        ...data,
-        consent: true,
-        fcmToken,
-      });
-
-      setShowOTP(true);
-      setLoading(false);
-      return;
-
       clearTimeout(slowTimer.current);
       setSlowMsg("");
       if (result.success) {
