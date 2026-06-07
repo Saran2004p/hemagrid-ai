@@ -1,29 +1,28 @@
-import React from "react";
-
 export default function AgentStatus() {
-  const statuses = [
-    "Urgency Agent",
-    "Donor Agent",
-    "Communication Agent",
-    "Escalation Agent",
-    "Learning Agent",
+  const agents = [
+    "Coordinator",
+    "Urgency",
+    "Donor Intelligence",
+    "Communication",
+    "Escalation",
+    "Learning",
   ];
 
   return (
-    <div className="bg-white rounded-2xl p-6 shadow">
-      <h3 className="text-xl font-bold mb-6">
+    <div className="bg-white p-6 rounded-xl shadow">
+      <h2 className="font-bold mb-4">
         Agent Status
-      </h3>
+      </h2>
 
-      {statuses.map((agent) => (
+      {agents.map((agent) => (
         <div
           key={agent}
-          className="flex justify-between mb-4"
+          className="flex justify-between py-2"
         >
-          <span>{agent}</span>
+          <span>{agent} Agent</span>
 
-          <span className="text-green-600 font-semibold">
-            Online
+          <span className="text-green-600 font-bold">
+            ACTIVE
           </span>
         </div>
       ))}

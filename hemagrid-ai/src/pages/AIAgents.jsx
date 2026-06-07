@@ -2,6 +2,7 @@ import React from "react";
 import AgentCard from "../components/agents/AgentCard";
 import { Brain, Users, MessageSquare, AlertTriangle, GraduationCap } from "lucide-react";
 
+
 const agents = [
   {
     title: "Urgency Agent",

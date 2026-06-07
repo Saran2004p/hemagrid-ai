@@ -1,49 +1,133 @@
-import {
+const {
   BedrockRuntimeClient,
-  InvokeModelCommand,
-} from "@aws-sdk/client-bedrock-runtime";
+  ConverseCommand,
+} = require("@aws-sdk/client-bedrock-runtime");
 
 const client = new BedrockRuntimeClient({
   region: process.env.AWS_REGION,
 });
 
-export async function analyzeRequest(request) {
-  const prompt = `
+async function analyzeUrgency(request) {
+  const command = new ConverseCommand({
+    modelId: process.env.BEDROCK_MODEL_ARN,
+
+    messages: [
+      {
+        role: "user",
+        content: [
+          {
+            text: `
 You are HemaGrid AI.
 
-Analyze this blood request.
+Analyze this blood request:
 
-Patient:
 ${JSON.stringify(request)}
 
-Return:
-1. Urgency Score (0-100)
-2. Reason
-3. Priority Level
-`;
+Urgency Scoring Rules:
 
-  const command = new InvokeModelCommand({
-    modelId: process.env.BEDROCK_MODEL,
+CRITICAL:
+- Score between 90 and 100
+- Life-threatening emergency
+- Required within 6 hours
 
-    body: JSON.stringify({
-      anthropic_version: "bedrock-2023-05-31",
-      max_tokens: 500,
-      messages: [
-        {
-          role: "user",
-          content: prompt,
-        },
-      ],
-    }),
+HIGH:
+- Score between 70 and 89
+- Required within 24 hours
 
-    contentType: "application/json",
+MEDIUM:
+- Score between 40 and 69
+- Required within 2-3 days
+
+LOW:
+- Score between 0 and 39
+- Planned requirement
+
+IMPORTANT:
+The urgencyScore MUST match the priority.
+
+Examples:
+
+{
+  "urgencyScore": 95,
+  "priority": "CRITICAL",
+  "reason": "Immediate life-saving requirement."
+}
+
+{
+  "urgencyScore": 80,
+  "priority": "HIGH",
+  "reason": "Urgent blood requirement within 24 hours."
+}
+
+{
+  "urgencyScore": 55,
+  "priority": "MEDIUM",
+  "reason": "Blood required in coming days."
+}
+
+{
+  "urgencyScore": 20,
+  "priority": "LOW",
+  "reason": "Non-emergency planned requirement."
+}
+
+Return ONLY valid JSON.
+
+{
+  "urgencyScore": number,
+  "priority": "CRITICAL|HIGH|MEDIUM|LOW",
+  "reason": "short reason"
+}
+`,
+          },
+        ],
+      },
+    ],
   });
 
   const response = await client.send(command);
 
-  const result = JSON.parse(
-    new TextDecoder().decode(response.body)
-  );
+  const text =
+  response.output.message.content[0].text;
 
-  return result;
+const cleaned = text
+  .replace(/```json/g, "")
+  .replace(/```/g, "")
+  .trim();
+
+const result = JSON.parse(cleaned);
+
+if (
+  result.priority === "CRITICAL" &&
+  result.urgencyScore < 90
+) {
+  result.urgencyScore = 95;
 }
+
+if (
+  result.priority === "HIGH" &&
+  result.urgencyScore < 70
+) {
+  result.urgencyScore = 80;
+}
+
+if (
+  result.priority === "MEDIUM" &&
+  result.urgencyScore < 40
+) {
+  result.urgencyScore = 55;
+}
+
+if (
+  result.priority === "LOW" &&
+  result.urgencyScore > 39
+) {
+  result.urgencyScore = 20;
+}
+
+return result;
+}
+
+module.exports = {
+  analyzeUrgency,
+};

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 
 export default function DonorDashboard() {

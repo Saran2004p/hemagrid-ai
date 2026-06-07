@@ -1,29 +1,51 @@
-import React from "react";
-import AgentActivityFeed from "../components/agents/AgentActivityFeed";
+import React, {
+  useState,
+  useEffect
+} from "react";
+
 import AgentStatus from "../components/agents/AgentStatus";
+import AgentTimeline from "../components/agents/AgentTimeline";
 
 export default function CoordinationCenter() {
+
+  const [stats, setStats] =
+    useState(null);
+
+  useEffect(() => {
+
+    const loadStats =
+      async () => {
+
+        try {
+
+          const response =
+            await fetch(
+              "http://localhost:5000/api/dashboard"
+            );
+
+          const data =
+            await response.json();
+
+          setStats(data);
+
+        } catch (error) {
+
+          console.error(error);
+        }
+      };
+
+    loadStats();
+
+  }, []);
+
   return (
     <div className="min-h-screen bg-slate-50 p-8">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold">
-          Coordination Center
-        </h1>
+      <h1 className="text-4xl font-bold mb-8">
+        HemaGrid Command Center
+      </h1>
 
-        <p className="text-gray-600">
-          Real-time AI care coordination dashboard
-        </p>
-      </div>
-
-      <div className="grid lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2">
-          <AgentActivityFeed />
-        </div>
-
-        <div>
-          <AgentStatus />
-        </div>
-      </div>
+      <AgentStatus />
+      <AgentTimeline />
     </div>
   );
 }

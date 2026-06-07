@@ -1,42 +1,105 @@
-import React from "react";
-import mockDonors from "../data/mockDonors";
+import {
+  useEffect,
+  useState
+} from "react";
+
+import {
+  getExplanation
+} from "../services/explainabilityApi";
 
 export default function Explainability() {
-  const donor = mockDonors[0];
+
+  const [
+    data,
+    setData
+  ] = useState(null);
+
+  useEffect(() => {
+
+    getExplanation({
+
+      patientName:
+        "Arun",
+
+      city:
+        "Hyderabad",
+
+      bloodGroup:
+        "O+",
+
+      units: 2,
+
+      urgency:
+        "critical"
+
+    })
+    .then(setData);
+
+  }, []);
+
+  if (!data)
+    return <p>Loading...</p>;
 
   return (
-    <div className="min-h-screen bg-slate-50 p-8">
+
+    <div className="p-8">
+
       <h1 className="text-4xl font-bold mb-8">
-        AI Explainability Center
+        AI Explainability
       </h1>
 
-      <div className="bg-white rounded-2xl p-8 shadow">
-        <h2 className="text-2xl font-semibold mb-6">
-          Why was {donor.name} selected?
+      <div className="bg-white p-6 rounded-xl shadow">
+
+        <h2 className="font-bold text-xl">
+          Urgency Reason
         </h2>
 
-        <div className="space-y-4">
-          <div className="flex justify-between">
-            <span>Blood Match</span>
-            <span>100%</span>
-          </div>
+        <p>
+          {data.urgencyReason}
+        </p>
 
-          <div className="flex justify-between">
-            <span>Distance</span>
-            <span>{donor.distance}</span>
-          </div>
-
-          <div className="flex justify-between">
-            <span>Response Probability</span>
-            <span>{donor.responseProbability}%</span>
-          </div>
-
-          <div className="flex justify-between">
-            <span>Reliability</span>
-            <span>{donor.reliability}/100</span>
-          </div>
-        </div>
       </div>
+
+      <div className="mt-6">
+
+        {data.selectedDonors.map(
+          donor => (
+
+            <div
+              key={
+                donor.donorId
+              }
+              className="bg-white p-6 rounded-xl shadow mb-4"
+            >
+
+              <h3 className="font-bold">
+                {donor.donorName}
+              </h3>
+
+              <p>
+                AI Score:
+                {donor.aiScore}
+              </p>
+
+              <p>
+                Response Probability:
+                {
+                  donor.responseProbability
+                }%
+              </p>
+
+              <p>
+                {
+                  donor.explanation
+                }
+              </p>
+
+            </div>
+          )
+        )}
+
+      </div>
+
     </div>
   );
 }

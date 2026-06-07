@@ -6,6 +6,8 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import LoadingScreen from './components/LoadingScreen'
 import ScrollToTop from './components/ScrollToTop'
+import Explainability from "./pages/Explainability";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const Home       = lazy(() => import('./pages/Home'))
 const Donors     = lazy(() => import('./pages/Donors'))
@@ -17,6 +19,10 @@ const NotFound   = lazy(() => import('./pages/NotFound'))
 const DonorDashboard = lazy(() => import('./pages/DonorDashboard'))
 const DonorLogin = lazy(() => import('./pages/DonorLogin'))
 const DonorAuth = lazy(() => import('./pages/DonorAuth'))
+const AIAgents = lazy(() => import('./pages/AIAgents'))
+const CoordinationCenter = lazy(() => import('./pages/CoordinationCenter'))
+const DonorMemory = lazy(() => import("./pages/DonorMemory"));
+const Forecast = lazy(() => import("./pages/Forecast"));
 
 function PageSpinner() {
   return (
@@ -60,6 +66,17 @@ function AnimatedRoutes() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/explainability" element={<Explainability />} />
+            <Route path="/ai-agents" element={<AIAgents />} />
+            <Route path="/coordination" element={<CoordinationCenter />} />
+            <Route path="/donor-memory" element={<DonorMemory />} />
+            <Route path="/forecast" element={<Forecast />} />
+            <Route path="/coordination-center" element={
+              <ProtectedRoute>
+                <CoordinationCenter/>
+              </ProtectedRoute>
+              }
+            />
           </Routes>
         </Suspense>
       </motion.div>

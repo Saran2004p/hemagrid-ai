@@ -52,7 +52,7 @@ To get service account JSON:
 ### Step 1 — Update API URL in frontend
 Open `bloodbridge-ai-v3/src/api.js` and set:
 ```javascript
-const BASE_URL = 'https://bloodbridge-backend.onrender.com'
+ BASE_URL = 'https://bloodbridge-backend.onrender.com'
 ```
 
 ### Step 2 — Rebuild frontend

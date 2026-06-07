@@ -19,7 +19,6 @@ import {
 import { registerDonor } from "../api";
 import GlowInput from "./animations/GlowInput";
 import HeartbeatButton from "./animations/HeartbeatButton";
-import { requestNotificationPermission } from "../firebase-messaging";
 import OTPVerification from "./OTPVerification";
 
 const BLOOD_TYPES = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
@@ -100,7 +99,6 @@ export default function DonorForm() {
     }, 10000);
 
     try {
-      const fcmToken = await requestNotificationPermission();
 
       setPendingFormData({
         ...data,

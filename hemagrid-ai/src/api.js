@@ -26,3 +26,13 @@ export const getCitySummary     = () => api('/api/donors/city-summary')
 export const submitBloodRequest = (data) => api('/api/requests', { method:'POST', body:JSON.stringify(data) })
 export const getLivePulse       = () => api('/api/requests/live-pulse')
 export const getDashboardStats  = () => api('/api/requests/stats')
+export async function
+getDashboard() {
+
+  const res =
+    await fetch(
+      "http://localhost:5000/api/dashboard"
+    );
+
+  return res.json();
+}

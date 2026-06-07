@@ -1,9 +1,11 @@
-export const createMessage = (donor) => {
-  return `
-Hello ${donor.name},
+const {
+  logEvent,
+} = require("../services/eventLogger");
 
-A nearby patient urgently needs ${donor.bloodGroup} blood.
-
-Can you help?
-`;
-};
+export async function coordinateRequest(request) {
+  return {
+    nextStep: "URGENCY_ANALYSIS",
+    status: "PROCESSING",
+    timestamp: new Date().toISOString(),
+  };
+}

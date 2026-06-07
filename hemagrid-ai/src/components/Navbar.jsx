@@ -102,6 +102,8 @@ export default function Navbar() {
     { to: "/how-it-works", label: t("nav.how") },
     { to: "/about", label: t("nav.about") },
     { to: "/contact", label: t("nav.contact") },
+    { to: "/ai-agents", label: "AI Agents" },
+    { to: "/coordination", label: "Coordination Center" }
   ];
 
   const isActive = (path) =>

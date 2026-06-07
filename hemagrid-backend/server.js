@@ -4,15 +4,104 @@ const cors       = require('cors')
 const helmet     = require('helmet')
 const morgan     = require('morgan')
 const rateLimit  = require('express-rate-limit')
-const { initFirebase, getDB } = require('./config/firebase')
 const fallback   = require('./config/fallback')
 const { verifyMailer }        = require('./email/mailer')
 const { notifyAllDonors, notifyCoordinator, notifyDonorConfirmed, sendWelcomeEmail } = require('./email/sender')
 const admin      = require('firebase-admin')
+const { analyzeUrgency } = require('./aws/bedrock')
+const { createRequest } = require("./services/requestService");
+const http = require("http");
+const { Server } = require("socket.io");
+const {
+  getCompatibleDonors,
+} = require("./services/matchDonors");
+const {
+  rankDonors,
+} = require("./services/rankDonors");
+const {
+  alertDonors,
+} = require("./services/alertDonors");
 
-// ── Initialize ──────────────────────────────────
-initFirebase()
-verifyMailer()
+const {
+  coordinatorAgent,
+} = require(
+  "./agents/coordinatorAgent"
+);
+const {
+  DynamoDBClient,
+} = require(
+  "@aws-sdk/client-dynamodb"
+);
+const {
+  explainabilityAgent,
+} = require(
+  "./agents/explainabilityAgent"
+);
+const {
+  ScanCommand,
+} = require("@aws-sdk/lib-dynamodb");
+
+const {
+  docClient,
+} = require("./aws/dynamodb");
+
+const {
+  generateInsights,
+} = require(
+  "./services/analyticsService"
+);
+
+const {
+  resourceAllocationAgent,
+} = require(
+  "./agents/resourceAllocationAgent"
+);
+
+const {
+  forecastingAgent
+} = require(
+  "./agents/forecastingAgent"
+);
+
+const {
+  getLearningData
+} = require(
+  "./services/getLearningData"
+);
+
+const {
+  generateExplanation
+} = require(
+  "./services/explainabilityService"
+);
+
+const {
+  getInventory
+} = require(
+  "./services/inventoryService"
+);
+
+const {
+  predictiveShortageAgent,
+} = require(
+  "./agents/predictiveShortageAgent"
+);
+
+const {
+  campaignRecommendationAgent,
+} = require(
+  "./agents/campaignRecommendationAgent"
+);
+
+
+
+// ── Initialize ────────────────────────────'──────
+
+const db = new DynamoDBClient({
+  region: process.env.AWS_REGION,
+});
+
+// verifyMailer()
 
 const app = express()
 app.use(helmet({ contentSecurityPolicy: false }))
@@ -59,8 +148,8 @@ const scoreDonor = (donor, city, urgency) => {
 // ── Health Check ────────────────────────────────
 app.get('/', (req, res) => res.json({
   success:   true,
-  message:   '🩸 BloodBridge AI Backend is running on Render',
-  version:   '3.0.0',
+  message: '🩸 HemaGrid AI Backend is running',
+  version: 'HemaGrid v1.0',
   db:        global.DB_CONNECTED ? 'Firebase Firestore' : 'Offline/Demo mode',
   email:     global.EMAIL_CONNECTED ? 'Gmail ✅' : 'Not configured',
   timestamp: new Date().toISOString(),
@@ -90,7 +179,9 @@ app.post('/api/donors/register', async (req, res) => {
   }
 
   try {
-    const db = getDB()
+    const db = new DynamoDBClient({
+  region: process.env.AWS_REGION,
+});
     const existing = await db.collection('donors').where('phone','==',phone).limit(1).get()
     if (!existing.empty)
       return res.status(400).json({ success:false, message:'Phone number already registered.' })
@@ -482,10 +573,393 @@ app.get('/api/requests', async (req, res) => {
 })
 
 // ── Start Server ────────────────────────────────
-const PORT = process.env.PORT || 5000
-app.listen(PORT, () => {
-  console.log(`\n🩸 BloodBridge AI Backend v3.0`)
-  console.log(`✅ Running on port ${PORT}`)
-  console.log(`📡 DB:    ${global.DB_CONNECTED ? 'Firebase Firestore ✅' : 'Offline/Demo ⚡'}`)
-  console.log(`📧 Email: ${global.EMAIL_CONNECTED ? 'Gmail ✅' : 'Not configured ⚠️'}`)
-})
+
+app.post(
+  "/api/agent-workflow",
+  async (req, res) => {
+    try {
+      const result =
+        await coordinatorAgent(req.body);
+
+      res.json({
+        success: true,
+        result,
+      });
+
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        error: error.message,
+      });
+    }
+  }
+);
+
+app.post(
+  "/api/explain",
+  async (req, res) => {
+
+    try {
+
+      const donor =
+        req.body;
+
+      const result =
+        await explainabilityAgent(
+          donor
+        );
+
+      res.json({
+        success: true,
+        result,
+      });
+
+    } catch (error) {
+
+      res.status(500).json({
+        success: false,
+        error:
+          error.message,
+      });
+
+    }
+  }
+);
+
+app.get(
+  "/api/dashboard",
+  async (req, res) => {
+
+    const learning =
+      await docClient.send(
+        new ScanCommand({
+          TableName:
+            "hemagrid-learning",
+        })
+      );
+
+    const donors =
+      await docClient.send(
+        new ScanCommand({
+          TableName:
+            "hemagrid-donors",
+        })
+      );
+
+    const requests =
+      learning.Items || [];
+
+    const donorList =
+      donors.Items || [];
+
+    const criticalCases =
+      requests.filter(
+        r =>
+          r.urgency ===
+          "CRITICAL"
+      ).length;
+
+    const matchesToday =
+      requests.filter(
+        r =>
+          r.donorCount > 0
+      ).length;
+
+    res.json({
+      totalRequests:
+        requests.length,
+
+      criticalCases,
+
+      availableDonors:
+        donorList.filter(
+          d => d.available
+        ).length,
+
+      matchesToday,
+    });
+  }
+);
+
+app.get(
+  "/api/events",
+  async (req, res) => {
+
+    try {
+
+      const result =
+        await docClient.send(
+          new ScanCommand({
+            TableName:
+              "hemagrid-events",
+          })
+        );
+
+      const events =
+        (result.Items || [])
+          .sort(
+            (a, b) =>
+              new Date(
+                b.timestamp
+              ) -
+              new Date(
+                a.timestamp
+              )
+          )
+          .slice(0, 20);
+
+      res.json(events);
+
+    } catch (error) {
+
+      console.error(error);
+
+      res.status(500).json({
+        error:
+          "Failed to fetch events"
+      });
+    }
+  }
+);
+
+app.get(
+  "/api/insights",
+  async (req, res) => {
+
+    const insights =
+      await generateInsights();
+
+    res.json(insights);
+  }
+);
+
+app.get(
+  "/api/forecast",
+  async (req,res)=>{
+
+    try {
+
+      const history =
+        await getLearningData();
+
+      const result =
+        await forecastingAgent(
+          history
+        );
+
+      res.json(result);
+
+    } catch(err){
+
+      console.error(err);
+
+      res.status(500).json({
+        error:
+          err.message
+      });
+    }
+  }
+);
+
+app.get(
+  "/api/donor-memory",
+  async (req, res) => {
+
+    try {
+
+      const result =
+        await docClient.send(
+          new ScanCommand({
+            TableName:
+              "hemagrid-donors"
+          })
+        );
+
+      const donors =
+        result.Items || [];
+
+      const processed =
+        donors.map(d => ({
+
+          donorId:
+            d.donorId,
+
+          name:
+            d.name,
+
+          totalRequests:
+            d.totalRequests || 0,
+
+          responses:
+            d.responses || 0,
+
+          responseRate:
+            d.totalRequests
+              ? Math.round(
+                  (
+                    d.responses /
+                    d.totalRequests
+                  ) * 100
+                )
+              : 0,
+        }));
+
+      processed.sort(
+        (a, b) =>
+          b.responseRate -
+          a.responseRate
+      );
+
+      res.json(processed);
+
+    } catch (err) {
+
+      console.error(err);
+
+      res.status(500).json({
+        error:
+          "Failed to load donor memory"
+      });
+    }
+  }
+);
+
+app.post(
+  "/api/resource-allocation",
+
+  async (
+    req,
+    res
+  ) => {
+
+    const result =
+      await resourceAllocationAgent(
+        req.body
+      );
+
+    res.json(
+      result
+    );
+  }
+);
+
+app.get(
+  "/api/explainability/:donorId",
+
+  async (
+    req,
+    res
+  ) => {
+
+    const donors =
+      await getDonorMemory();
+
+    const donor =
+      donors.find(
+        d =>
+          d.donorId ===
+          req.params.donorId
+      );
+
+    if (!donor) {
+
+      return res
+        .status(404)
+        .json({
+          error:
+            "Donor not found"
+        });
+    }
+
+    res.json(
+      generateExplanation(
+        donor
+      )
+    );
+  }
+);
+
+app.get(
+  "/api/inventory",
+  async (req,res) => {
+
+    const inventory =
+      await getInventory();
+
+    res.json(inventory);
+  }
+);
+
+app.get(
+  "/api/shortages",
+
+  async (
+    req,
+    res
+  ) => {
+
+    const result =
+      await predictiveShortageAgent();
+
+    res.json(
+      result
+    );
+  }
+);
+
+app.get(
+  "/api/campaigns",
+
+  async (
+    req,
+    res
+  ) => {
+
+    const result =
+      await campaignRecommendationAgent();
+
+    res.json(
+      result
+    );
+  }
+);
+
+const PORT = process.env.PORT || 5000;
+
+const server =
+  http.createServer(app);
+
+const io =
+  new Server(server, {
+    cors: {
+      origin: "*"
+    }
+  });
+
+global.io = io;
+
+io.on(
+  "connection",
+  socket => {
+
+    console.log(
+      "Client Connected"
+    );
+
+    socket.on(
+      "disconnect",
+      () =>
+        console.log(
+          "Client Disconnected"
+        )
+    );
+  }
+);
+
+server.listen(
+  PORT,
+  () =>
+    console.log(
+      `Running on ${PORT}`
+    )
+);

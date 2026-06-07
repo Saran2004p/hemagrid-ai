@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { Phone, Lock } from "lucide-react";
+import { login } from "../services/authService";
 
 export default function DonorLogin() {
   const [phone, setPhone] = useState("");
@@ -14,57 +13,34 @@ export default function DonorLogin() {
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    let newErrors = {};
+  try {
 
-    if (!phone.trim()) {
-      newErrors.phone = "Phone number is required";
-    }
-
-    if (!password.trim()) {
-      newErrors.password = "Password is required";
-    }
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-
-    setErrors({});
-    setLoginError("");
-
-    const q = query(
-      collection(db, "donors"),
-      where("phone", "==", phone.trim())
-    );
-
-    const snapshot = await getDocs(q);
-
-    if (snapshot.empty) {
-      setLoginError("Donor not found");
-      return;
-    }
-
-    const donor = snapshot.docs[0].data();
-
-    console.log("DONOR FROM FIREBASE:", donor);
-    console.log("Saved password:", donor.password);
-    console.log("Typed password:", password);
-    console.log("Match:", String(donor.password).trim() === password.trim());
-
-    if (String(donor.password).trim() !== password.trim()) {
-      setLoginError("Incorrect password");
-      return;
-    }
+    const session =
+      await login(
+        phone,
+        password
+      );
 
     localStorage.setItem(
-      "bloodbridge_donor",
-      JSON.stringify(donor)
+      "token",
+      session
+        .getIdToken()
+        .getJwtToken()
     );
 
-    navigate("/donor-dashboard");
-  };
+    navigate(
+      "/coordination-center"
+    );
+
+  } catch (error) {
+
+    setLoginError(
+      error.message
+    );
+  }
+};
 
   return (
     <div className="w-full max-w-md mx-auto py-8">
