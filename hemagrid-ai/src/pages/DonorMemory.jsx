@@ -11,7 +11,7 @@ export default function DonorMemory() {
 
   useEffect(() => {
 
-    fetch("http://hemagrid-backend-env.eba-zutpubgp.us-east-1.elasticbeanstalk.com/api/donor-memory")
+    fetch("https://hemagrid-backend-env.eba-zutpubgp.us-east-1.elasticbeanstalk.com/api/donor-memory")
       .then(
         res => res.json()
       )

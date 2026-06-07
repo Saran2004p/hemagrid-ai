@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE = "http://hemagrid-backend-env.eba-zutpubgp.us-east-1.elasticbeanstalk.com";
+const API_BASE = "https://hemagrid-backend-env.eba-zutpubgp.us-east-1.elasticbeanstalk.com";
 
 export async function
 getForecast() {
