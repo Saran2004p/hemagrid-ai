@@ -19,9 +19,7 @@ export default function CoordinationCenter() {
         try {
 
           const response =
-            await fetch(
-              "http://localhost:5000/api/dashboard"
-            );
+            await fetch(`${BASE_URL}/api/dashboard`);
 
           const data =
             await response.json();

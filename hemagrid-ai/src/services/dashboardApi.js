@@ -1,5 +1,4 @@
-const API =
-  "http://localhost:5000";
+const API = "http://hemagrid-backend-env.eba-zutpubgp.us-east-1.elasticbeanstalk.com";
 
 export async function
 getDashboardStats() {

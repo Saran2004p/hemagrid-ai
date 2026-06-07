@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 
 const socket = io(
-  "http://localhost:5000"
+  "http://hemagrid-backend-env.eba-zutpubgp.us-east-1.elasticbeanstalk.com"
 );
 
 export default socket;

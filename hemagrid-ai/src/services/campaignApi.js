@@ -4,9 +4,7 @@ export async function
 getCampaigns() {
 
   const response =
-    await axios.get(
-      "http://localhost:5000/api/campaigns"
-    );
+    axios.get("http://hemagrid-backend-env.eba-zutpubgp.us-east-1.elasticbeanstalk.com/api/campaigns")
 
   return response.data;
 }

@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const API_BASE = "http://hemagrid-backend-env.eba-zutpubgp.us-east-1.elasticbeanstalk.com";
+
 export async function
 getExplanation(
   donorId
@@ -7,9 +9,8 @@ getExplanation(
 
   const response =
     await axios.get(
-
-      `http://localhost:5000/api/explainability/${donorId}`
-    );
+  `${API_BASE}/api/explainability/${donorId}`
+);
 
   return response.data;
 }
